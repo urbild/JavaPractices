@@ -19,14 +19,13 @@ public class guncelTarihZaman {
 public static String time() {
     final long TIME_ZONE_OFFSET = +3; // TR
 
-    // Obtain the total milliseconds since midnight, Jan 1, 1970
+   
     long totalTime = System.currentTimeMillis();
 
-    // Obtain total seconds since midnight, Jan 1, 1970
     totalTime /= 1000;
 
-    // Obtain current minute and second
-    String currentMinuteAndSecond = ""; // Holds Minutes and Seconds
+
+    String currentMinuteAndSecond = "";
     for (int i = 0; i < 2; i++) {
         currentMinuteAndSecond =
                 (totalTime % 60 < 10 ? ":0" + totalTime % 60 : ":" + totalTime % 60)
@@ -35,7 +34,7 @@ public static String time() {
     }
 
     String setAmOrPm = "";
-    // Obtain current hour in 12 format
+
     long currentHour = totalTime % 24;
     if (currentHour == 0)
         currentHour = 24;
@@ -47,28 +46,25 @@ public static String time() {
     else
         setAmOrPm = " AM";
 
-    //Add time zone offset to GMT
     currentHour += TIME_ZONE_OFFSET;
 
     return currentHour + currentMinuteAndSecond + setAmOrPm;
 }
 
-    /** Method date **************************************************************/
     public static String date() {
 
         return year() + "";
     }
 
-    /** Method year returns the current year *************************************/
     public static int year() {
-        // Obtain the current year
+       
         int currentYear =
                 (int)(System.currentTimeMillis() / millisecondPerYear()) + 1970;
 
         return currentYear;
     }
 
-    /** Method month returns the current month ***********************************/
+
     public static int month() {
         // Obtain the current month
         int currentMonth =
@@ -77,46 +73,45 @@ public static String time() {
         return currentMonth + 1;
     }
 
-    /** Method day returns the current day ***************************************/
     public static int day(){
-        // Obtain the current day
+       
         int currentDay = getTotalNumberOfDays(year(), month()) ;
         return currentDay;
     }
 
-    /** Method millisecondPerYear */
+
     public static double millisecondPerYear() {
         return 3.15569E10;
     }
 
-    /** Method millisecondsPerMonth */
+
     public static double millisecondsPerMonth() {
         return 2.63E9;
     }
 
-    /** Get the total number of days since January 1, 1800 */
+
     public static int getTotalNumberOfDays(int year, int month) {
         int total = 0;
-        // Get the total days from 1800 to 1/1/year
+  
         for (int i = 1800; i < year; i++)
             if (isLeapYear(i))
                 total = total + 366;
             else
                 total = total + 365;
 
-        // Add days from Jan to the month prior to the calendar month
+
         for (int i = 1; i < month; i++)
             total = total + getNumberOfDaysInMonth(year, i);
 
         return total;
     }
 
-    /** Method isLeapyear */
+
     public static boolean isLeapYear(int year) {
         return year % 400 == 0 || (year % 4 == 0 && year % 400 != 0);
     }
 
-    /** Get the number of days in a month */
+
     public static int getNumberOfDaysInMonth(int year, int month) {
         if (month == 1 || month == 3 || month == 5 || month == 7 ||
                 month == 8 || month == 10 || month == 12)
@@ -127,7 +122,7 @@ public static String time() {
 
         if (month == 2) return isLeapYear(year) ? 29 : 28;
 
-        return 0; // If month is incorrect
+        return 0; 
     }
 
 }
