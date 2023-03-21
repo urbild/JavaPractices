@@ -19,7 +19,7 @@ public class Main {
         MakineMuhendisi muhendis2 = new MakineMuhendisi(true,false);
         
         String[] tecrube = {};
-        String[] referans = {"Mustafa Murat Coşkun","Serhat Say"};
+        String[] referans = {"Ahmet Mehmet","Tevfik Zaim"};
         muhendis2.adli_sicil_sorgula();
         muhendis2.askerlik_durumu_sorgula();
         System.out.println(muhendis2.mezuniyet_ortalamasi(2.31));
